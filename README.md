@@ -24,6 +24,7 @@ export default {
 				{
 					name: 'some-field-name-1',
 					label: 'My field label',
+					value: null,
 					validate: {
 						required: {
 							rule: true,
@@ -49,10 +50,11 @@ export default {
 		:class="{ 'has-error': hasValidationError(field.name, 'some-validator-name') }">
 		
 		<label :for="field.name">{{ field.label }}</label>
-		<input :id="field.name" 
-			:field="field.name" 
-			v-validate="field.validate"
-			type="text" />
+		<input type="text" class="form-control" 
+			:id="field.name" 
+			:field="field.name"
+			v-model="field.value" 
+			v-validate="field.validate" />
 		
 		<p class="help-block" v-for="msg in validationMessages(field.name, 'some-validator-name')">
 			{{ msg }}
