@@ -1,7 +1,7 @@
 {
   "name": "vue-validator-util",
-  "version": "0.1.1",
-  "description": "vue-validator utilities.",
+  "version": "0.2.0",
+  "description": "Vue.js mixin with utility methods for vue-validator.",
   "main": "dist/vue-validator-util.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,6 +19,7 @@
     "babel-runtime": "^5.8.34",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
+    "mout": "^0.11.1",
     "themekit-webpack-config": "^1.0.1",
     "vue-hot-reload-api": "^1.2.2",
     "vue-loader": "^8.0.2",

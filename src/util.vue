@@ -1,4 +1,6 @@
 <script>
+	import camelCase from 'mout/string/camelCase'
+
 	export default {
 		data () {
 			return {
@@ -7,7 +9,9 @@
 		},
 		methods: {
 			getValidator (name) {
-				name = name || '$validation'
+				name = name || 'validation'
+				name = camelCase(name)
+				name = '$' + name
 				return this[name]
 			},
 			getValidatorField (fieldName, validatorName) {
@@ -15,6 +19,7 @@
 				if (!validator) {
 					return null
 				}
+				fieldName = camelCase(fieldName)
 				return validator[fieldName] || null
 			},
 			hasValidationError (fieldName, validatorName) {
