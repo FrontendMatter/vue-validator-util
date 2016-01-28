@@ -93,6 +93,37 @@ export default {
 - the `fieldName` is passed to `getValidatorField`
 - the `validatorName` is passed to `getValidator`
 
+#### firstValidationMessage(fieldName, [validatorName])
+
+> Returns the first message for a vue-validator field. Useful when trying to display a single message at a time.
+
+- the `fieldName` is passed to `getValidatorField`
+- the `validatorName` is passed to `getValidator`
+
+##### Example
+
+```html
+<validator name="validation">
+	<div v-for="field in fields" 
+		class="form-group" 
+		:class="{ 'has-error': hasValidationError(field.name) }">
+		
+		<label :for="field.name">{{ field.label }}</label>
+		<input type="text" class="form-control" 
+			:id="field.name" 
+			:field="field.name"
+			v-model="field.value" 
+			v-validate="field.validate" />
+		
+		<p class="help-block" v-if="hasValidationError(field.name)">
+			{{ firstValidationMessage(field.name) }}
+		</p>
+	</div>
+</validator>
+```
+
+--
+
 ## Build
 
 > You can easily build vue-validator-util yourself.
@@ -128,7 +159,3 @@ A faster build suited for development, with no optimizations and without minific
 Start an initial development build and then FAST continuous incremental builds:
 
 	npm run dev
-	
-## Documentation
-
-> **Work in progress!**

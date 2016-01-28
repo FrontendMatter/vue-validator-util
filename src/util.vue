@@ -15,7 +15,7 @@
 				return this[name]
 			},
 			getValidatorField (fieldName, validatorName) {
-				let validator = this.getValidator(validatorName)
+				const validator = this.getValidator(validatorName)
 				if (!validator) {
 					return null
 				}
@@ -23,7 +23,7 @@
 				return validator[fieldName] || null
 			},
 			hasValidationError (fieldName, validatorName) {
-				let validatorField = this.getValidatorField(fieldName, validatorName)
+				const validatorField = this.getValidatorField(fieldName, validatorName)
 				if (validatorField) {
 					return (validatorField.dirty || this.didSubmit) && 
 						validatorField.invalid
@@ -31,11 +31,13 @@
 				return null
 			},
 			validationMessages (fieldName, validatorName) {
-				let validatorField = this.getValidatorField(fieldName, validatorName)
-				if (validatorField) {
-					return validatorField ? validatorField.messages : null	
-				}
-				return null
+				const validatorField = this.getValidatorField(fieldName, validatorName)
+				return validatorField ? validatorField.messages : null
+			},
+			firstValidationMessage (fieldName, validatorName) {
+				const messages = this.validationMessages(fieldName, validatorName)
+				const keys = messages ? Object.keys(messages) : []
+				return keys.length ? messages[keys[0]] : null
 			}
 		}
 	}
