@@ -20,19 +20,17 @@ import Validation from 'vue-validator-util'
 export default {
 	data () {
 		return {
-			fields: [
-				{
-					name: 'some-field-name-1',
-					label: 'My field label',
-					value: null,
-					validate: {
-						required: {
-							rule: true,
-							message: 'The field is required'
-						}
+			fields: [{
+				name: 'some-field-name',
+				label: 'My field label',
+				value: null,
+				validate: {
+					required: {
+						rule: true,
+						message: 'The field is required'
 					}
 				}
-			]
+			}]
 		}
 	},
 	mixins: [
@@ -102,21 +100,42 @@ export default {
 
 ##### Example
 
+> Assuming we have a field which is invalid for more than one rule (i.e. `required` and `minlength`), the following example will first display `The field is required` and after the `required` rule passes, it will display `The field must have at least 10 characters.`.
+
+```js
+data () {
+	return {
+		value: null,
+		validate: {
+			required: {
+				rule: true,
+				message: 'The field is required.'
+			},
+			minlength: {
+				rule: 10,
+				message: 'The field must have at least 10 characters.'
+			}
+		}
+	}
+}
+```
+
+> Template:
+
 ```html
 <validator name="validation">
-	<div v-for="field in fields" 
-		class="form-group" 
-		:class="{ 'has-error': hasValidationError(field.name) }">
+	<div class="form-group" 
+		:class="{ 'has-error': hasValidationError('some-field-name') }">
 		
-		<label :for="field.name">{{ field.label }}</label>
+		<label for="field-1">My label</label>
 		<input type="text" class="form-control" 
-			:id="field.name" 
-			:field="field.name"
-			v-model="field.value" 
-			v-validate="field.validate" />
+			id="field-1" 
+			field="some-field-name"
+			v-model="value" 
+			v-validate="validate" />
 		
-		<p class="help-block" v-if="hasValidationError(field.name)">
-			{{ firstValidationMessage(field.name) }}
+		<p class="help-block" v-if="hasValidationError('some-field-name')">
+			{{ firstValidationMessage('some-field-name') }}
 		</p>
 	</div>
 </validator>
