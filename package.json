@@ -1,6 +1,6 @@
 {
   "name": "vue-validator-util",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Vue.js mixin with utility methods for vue-validator.",
   "main": "dist/vue-validator-util.js",
   "scripts": {

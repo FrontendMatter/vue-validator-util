@@ -44,15 +44,13 @@ export default {
 
 ```html
 <validator name="some-validator-name">
-	<div 
-		v-for="field in fields" 
+	<div v-for="field in fields" 
 		class="form-group" 
 		:class="{ 'has-error': hasValidationError(field.name, 'some-validator-name') }">
 		
 		<label :for="field.name">{{ field.label }}</label>
-		<input 
-			:id="field.name" 
-			field="field.name" 
+		<input :id="field.name" 
+			:field="field.name" 
 			v-validate="field.validate"
 			type="text" />
 		
