@@ -11,8 +11,7 @@
 			getValidator (name) {
 				name = name || 'validation'
 				name = camelCase(name)
-				name = '$' + name
-				return this[name]
+				return this[name] !== undefined ? this[name] : this['$' + name]
 			},
 			getValidatorField (fieldName, validatorName) {
 				const validator = this.getValidator(validatorName)
